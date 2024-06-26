@@ -1,0 +1,19 @@
+spring:
+    cloud:
+        stream:
+            kafka:
+                binder:
+                    brokers:
+                        - localhost:9091
+                    auto-create-topics: false
+            bindings:
+                news-out-0:
+                    destination: spring.cloud.stream.news
+                    content-type: application/json
+                    
+                #value from spring.cloud.function.definition + "in" + index
+                consumer-in-0:
+                    destination: spring.cloud.stream.news
+                    content-type: application/json
+        function:
+            definition: consumer
